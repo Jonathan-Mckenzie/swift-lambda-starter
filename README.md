@@ -65,3 +65,9 @@ $ ./scripts/build.sh <project name>
 ```
 - The final build can be found in: `.build/lambda/<project name>/lambda.zip`
 
+#### Gotchas
+- Create an API Gateway
+    1. After creating lambda, navigate directly to API Gateway in aws console
+    1. Create HTTP API
+    1. Add lambda function as an integration
+    1. Be sure to select version 2.0 

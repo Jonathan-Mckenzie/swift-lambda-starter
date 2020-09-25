@@ -30,18 +30,37 @@ let jsonDecoder = JSONDecoder()
 
 Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Result<APIGateway.V2.Response, Error>) -> Void) in
     
-    guard request.context.http.method == HTTPMethod.POST, request.context.http.path == "/test" else {
+    // debug requests coming in
+    dump(request);
+    
+    guard request.context.http.path == "/test" else {
         return callback(.success(APIGateway.V2.Response(statusCode: HTTPResponseStatus.notFound)))
     }
     
-    do {
-        let input = try jsonDecoder.decode(Input.self, from: request.body ?? "")
-        let body = try jsonEncoder.encodeAsString(Output(message: input.name + " , hello friend."))
-        let response = APIGateway.V2.Response(statusCode: HTTPResponseStatus.ok, multiValueHeaders: ["content-type": ["application/json"]], body: body )
-        callback(.success(response))
-    } catch {
-        callback(.success(APIGateway.V2.Response(statusCode: HTTPResponseStatus.badRequest)))
+    let response: APIGateway.V2.Response
+    
+    switch (request.context.http.path, request.context.http.method) {
+    case ("/test", .GET):
+        response = APIGateway.V2.Response(
+            statusCode: HTTPResponseStatus.ok,
+            headers: ["content-type": "application/json"],
+            body: try! jsonEncoder.encodeAsString(Output(message: "hello friend."))
+        )
+        break
+    case ("/test", .POST):
+        do {
+            let input = try jsonDecoder.decode(Input.self, from: request.body ?? "")
+            let body = try jsonEncoder.encodeAsString(Output(message: input.name + ", hello friend."))
+            response = APIGateway.V2.Response(statusCode: HTTPResponseStatus.ok, multiValueHeaders: ["content-type": ["application/json"]], body: body )
+        } catch {
+            response = APIGateway.V2.Response(statusCode: HTTPResponseStatus.badRequest, body: "missing name")
+        }
+        break
+    default:
+        response = APIGateway.V2.Response(statusCode: HTTPResponseStatus.badRequest)
     }
+    
+    callback(.success(response))
 }
 
 
