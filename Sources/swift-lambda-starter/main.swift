@@ -30,7 +30,7 @@ let jsonDecoder = JSONDecoder()
 
 Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Result<APIGateway.V2.Response, Error>) -> Void) in
     
-    guard request.context.http.method == HTTPMethod.POST, request.context.http.path == "/hello" else {
+    guard request.context.http.method == HTTPMethod.POST, request.context.http.path == "/test" else {
         return callback(.success(APIGateway.V2.Response(statusCode: HTTPResponseStatus.notFound)))
     }
     
