@@ -31,7 +31,7 @@ let jsonDecoder = JSONDecoder()
 Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Result<APIGateway.V2.Response, Error>) -> Void) in
     
     // debug requests coming in
-    dump(request);
+    context.logger.info("\(request)");
     
     guard request.context.http.path == "/test" else {
         return callback(.success(APIGateway.V2.Response(statusCode: HTTPResponseStatus.notFound)))
