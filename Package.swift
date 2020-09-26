@@ -22,5 +22,9 @@
             .product(name: "AWSLambdaEvents", package: "swift-aws-lambda-runtime"),
        ]
      ),
+    .testTarget(
+        name: "swift-lambda-starter-tests",
+        dependencies: ["swift-lambda-starter"]
+    )
    ]
  )
