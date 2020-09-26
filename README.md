@@ -71,3 +71,6 @@ $ ./scripts/build.sh <project name>
     1. Create HTTP API
     1. Add lambda function as an integration
     1. Be sure to select version 2.0 
+    
+- Xcode quietly fails to launch the project
+    1. Check if port 7000 is being used

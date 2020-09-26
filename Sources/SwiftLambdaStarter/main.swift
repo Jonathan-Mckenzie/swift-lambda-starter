@@ -1,6 +1,7 @@
 import Foundation
 import AWSLambdaRuntime
 import AWSLambdaEvents
+import IpWhitelistCheckerLib
 
 extension JSONEncoder {
     func encodeAsString<T: Encodable>(_ value: T) throws -> String {
@@ -26,15 +27,25 @@ struct Output: Codable {
 
 let jsonEncoder = JSONEncoder()
 let jsonDecoder = JSONDecoder()
+let ipChecker = IpWhitelistChecker()
 
+/*
+ TODO:
+ - (done) only allow certain IPs to access this lambda function
+ - set an environment variable to replace "friend" in the responses
+ */
 
 Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Result<APIGateway.V2.Response, Error>) -> Void) in
     
     // debug requests coming in
-    context.logger.info("\(request)");
+    context.logger.debug("\(request)");
     
     guard request.context.http.path == "/test" else {
         return callback(.success(APIGateway.V2.Response(statusCode: HTTPResponseStatus.notFound)))
+    }
+    
+    guard ipChecker.isValid(request.context.http.sourceIp) else {
+        return callback(.success(APIGateway.V2.Response(statusCode: HTTPResponseStatus.forbidden)))
     }
     
     let response: APIGateway.V2.Response

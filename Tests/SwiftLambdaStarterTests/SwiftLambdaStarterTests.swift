@@ -9,7 +9,7 @@ final class SwiftLambdaStarterTests: XCTestCase {
     override func setUp() {
         super.setUp()
         process = Process()
-        process.executableURL = productsDirectory.appendingPathComponent("swift-lambda-starter")
+        process.executableURL = productsDirectory.appendingPathComponent("SwiftLambdaStarter")
         try? process.run()
         sleep(1) // wait for server to come online
     }

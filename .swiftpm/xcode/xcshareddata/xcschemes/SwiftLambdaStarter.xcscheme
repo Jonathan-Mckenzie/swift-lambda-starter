@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "swift-lambda-starter"
-               BuildableName = "swift-lambda-starter"
-               BlueprintName = "swift-lambda-starter"
+               BlueprintIdentifier = "SwiftLambdaStarter"
+               BuildableName = "SwiftLambdaStarter"
+               BlueprintName = "SwiftLambdaStarter"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftLambdaStarterTests"
+               BuildableName = "SwiftLambdaStarterTests"
+               BlueprintName = "SwiftLambdaStarterTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "swift-lambda-starter-tests"
-               BuildableName = "swift-lambda-starter-tests"
-               BlueprintName = "swift-lambda-starter-tests"
+               BlueprintIdentifier = "SwiftLambdaStarterTests"
+               BuildableName = "SwiftLambdaStarterTests"
+               BlueprintName = "SwiftLambdaStarterTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -54,13 +68,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "swift-lambda-starter"
-            BuildableName = "swift-lambda-starter"
-            BlueprintName = "swift-lambda-starter"
+            BlueprintIdentifier = "SwiftLambdaStarter"
+            BuildableName = "SwiftLambdaStarter"
+            BlueprintName = "SwiftLambdaStarter"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
+         <EnvironmentVariable
+            key = ""
+            value = ""
+            isEnabled = "YES">
+         </EnvironmentVariable>
          <EnvironmentVariable
             key = "LOCAL_LAMBDA_SERVER_ENABLED"
             value = "true"
@@ -78,9 +97,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "swift-lambda-starter"
-            BuildableName = "swift-lambda-starter"
-            BlueprintName = "swift-lambda-starter"
+            BlueprintIdentifier = "SwiftLambdaStarter"
+            BuildableName = "SwiftLambdaStarter"
+            BlueprintName = "SwiftLambdaStarter"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
