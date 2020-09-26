@@ -1,32 +1,29 @@
 import XCTest
 import class Foundation.Bundle
 
+
 final class SwiftLambdaStarterTests: XCTestCase {
     
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-
-        // Some of the APIs that we use below are available in macOS 10.13 and above.
-        guard #available(macOS 10.13, *) else {
-            return
-        }
-
-        let fooBinary = productsDirectory.appendingPathComponent("swift-lambda-starter")
-
-        let process = Process()
-        process.executableURL = fooBinary
-
-        let pipe = Pipe()
-        process.standardOutput = pipe
-
-        try process.run()
+    var process: Process = Process()
+    
+    override func setUp() {
+        super.setUp()
+        process.executableURL = productsDirectory.appendingPathComponent("swift-lambda-starter")
+        try? process.run()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        process.terminate()
+    }
+    
+    func createJson(_ name: String? = nil) -> [String: Any] {
         
-        let expectation = self.expectation(description: "Http Requests")
-
-        let json: [String: Any] = [
-            "routeKey": "GET /test",
+        let method: String = (name != nil) ? "POST" : "GET"
+        let bodyStr: String = (name != nil) ? "{\"name\":\"\(String(describing: name))\"}" : ""
+        
+        return [
+            "routeKey": "\(method) /test",
             "version": "2.0",
             "rawPath": "/test",
             "stageVariables": Dictionary<String, Any>(),
@@ -41,13 +38,13 @@ final class SwiftLambdaStarterTests: XCTestCase {
                 "http": [
                     "path": "/test",
                     "userAgent": "Paw/3.1.10 (Macintosh; OS X/10.15.4) GCDHTTPRequest",
-                    "method": "GET",
+                    "method": "\(method)",
                     "protocol": "HTTP/1.1",
                     "sourceIp": "142.250.68.14"
                 ],
                 "time": "25/Sep/2020:12:47:41 +0000"
             ],
-            "body": "",
+            "body": bodyStr,
             "isBase64Encoded": false,
             "rawQueryString": "",
             "headers": [
@@ -56,9 +53,13 @@ final class SwiftLambdaStarterTests: XCTestCase {
                 "content-length": "0"
             ]
         ]
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-
+    }
+    
+    func testGetRequest() throws {
         
+        let expectation = self.expectation(description: "Http Requests")
+        let jsonData = try? JSONSerialization.data(withJSONObject: self.createJson())
+
         let url = URL(string: "http://localhost:7000/invoke")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -92,9 +93,6 @@ final class SwiftLambdaStarterTests: XCTestCase {
         
         XCTAssertEqual(responseJson["statusCode"] as! Int, 200)
         XCTAssertEqual(responseJson["body"] as! String, "{\"message\":\"hello friend.\"}")
-
-        // kill the server
-        process.terminate()
     }
 
     /// Returns path to the built products directory.
@@ -110,6 +108,6 @@ final class SwiftLambdaStarterTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testGetRequest", testGetRequest),
     ]
 }
