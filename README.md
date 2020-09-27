@@ -2,15 +2,34 @@
 
 Starter project to explore the capabilities of creating http rest endpoints with lambdas written in Swift.
 
-
 ## Get up and Running
 
+### Xcode
 1. Launch xcode and import project
-1. Set environment variable `LOCAL_LAMBDA_SERVER_ENABLED` to `true`
-1. Run from xcode
+1. Edit Scheme -> Run -> Environment Variables
+    1. `LOCAL_LAMBDA_SERVER_ENABLED` -> `true`
+1. Run `SwiftLambdaStarter`
+        
+### Command-line
+```
+$ export LOCAL_LAMBDA_SERVER_ENABLED=true
+$ swift build
+$ .build/debug/SwiftLambdaStarter
+```
 
 ## Test local environment
 Runs a test http server that listens for /invoke and injects the request into the context of the lambda function.
+
+### Xcode
+- Test from Run dropdown
+
+### Command-line
+```
+$ swift test
+```
+
+### Test local lambda server
+
 ```
 POST: http://localhost:7000/invoke
 ```
@@ -50,7 +69,7 @@ Example Body:
 }
 ```
 
-## Build and Deploy
+## Build and Deploy (command-line only)
 
 ### Setup
 
@@ -70,7 +89,8 @@ $ ./scripts/build.sh <project name>
     - new line separated
 - run script from project dir:
 ```
-$ ./scripts/whitelist-script.sh
+$ cd ./scripts
+$ ./generate-whitelist.sh
 ```
 
 #### Gotchas
