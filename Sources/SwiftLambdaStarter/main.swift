@@ -27,7 +27,7 @@ struct Output: Codable {
 
 let jsonEncoder = JSONEncoder()
 let jsonDecoder = JSONDecoder()
-let ipChecker = IpWhitelistChecker([])
+let ipChecker = IpWhitelistChecker(["142.250.68.14"])
 
 /*
  TODO:
@@ -36,7 +36,7 @@ let ipChecker = IpWhitelistChecker([])
  */
 
 Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Result<APIGateway.V2.Response, Error>) -> Void) in
-    
+
     // debug requests coming in
     context.logger.debug("\(request)");
     

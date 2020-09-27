@@ -27,7 +27,7 @@
     .target(
         name: "IpWhitelistCheckerLib",
         dependencies: [],
-        resources: [.process("Resources/whitelist.txt")]
+        resources: [.copy("Resources/whitelist.txt")]
     ),
     .testTarget(
         name: "SwiftLambdaStarterTests",
