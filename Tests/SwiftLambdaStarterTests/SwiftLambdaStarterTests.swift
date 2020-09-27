@@ -44,7 +44,7 @@ final class SwiftLambdaStarterTests: XCTestCase {
                     "userAgent": "Paw/3.1.10 (Macintosh; OS X/10.15.4) GCDHTTPRequest",
                     "method": "\(method)",
                     "protocol": "HTTP/1.1",
-                    "sourceIp": "142.250.68.14"
+                    "sourceIp": "192.168.1.1"
                 ],
                 "time": "25/Sep/2020:12:47:41 +0000"
             ],

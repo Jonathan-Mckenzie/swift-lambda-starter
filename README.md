@@ -65,6 +65,14 @@ $ ./scripts/build.sh <project name>
 ```
 - The final build can be found in: `.build/lambda/<project name>/lambda.zip`
 
+### Make changes to Ip Address Whitelist
+- make edits to `<project dir>/scripts/whitelist.txt`
+    - new line separated
+- run script from project dir:
+```
+$ ./scripts/whitelist-script.sh
+```
+
 #### Gotchas
 - Create an API Gateway
     1. After creating lambda, navigate directly to API Gateway in aws console
@@ -74,3 +82,11 @@ $ ./scripts/build.sh <project name>
     
 - Xcode quietly fails to launch the project
     1. Check if port 7000 is being used
+    
+- Resolving bundle resources appears to be broken when running in target release environment
+    1. This problem occurred when bundling `whitelist.txt` with the source
+    1. Amazon linux bundle path seems to be out of sync between runtime path
+    1. keep a look out for future releases of Swift that addresses this
+    
+- No longer dependent on Xcode to build and test this project
+    1. preferred IDE: CLion with Swift plugin

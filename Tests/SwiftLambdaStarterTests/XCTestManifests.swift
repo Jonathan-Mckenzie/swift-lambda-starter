@@ -4,8 +4,7 @@ import XCTest
 public func allTests() -> [XCTestCaseEntry] {
     return [
         testCase(SwiftLambdaStarterTests.allTests),
-        testCase(IpWhitelistCheckerTests.allTests),
-        testCase(IpAddressFileReaderTests.allTests)
+        testCase(IpWhitelistCheckerTests.allTests)
     ]
 }
 #endif

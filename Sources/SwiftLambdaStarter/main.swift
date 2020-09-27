@@ -15,7 +15,6 @@ extension JSONDecoder {
     }
 }
 
-
 struct Input: Codable {
     var name: String
 }
@@ -24,17 +23,15 @@ struct Output: Codable {
     var message: String
 }
 
-
 let jsonEncoder = JSONEncoder()
 let jsonDecoder = JSONDecoder()
-let ipChecker = IpWhitelistChecker(["142.250.68.14"])
+let ipChecker = IpWhitelistChecker(IpAddresses.list)
 
 /*
  TODO:
  - (done) only allow certain IPs to access this lambda function
  - set an environment variable to replace "friend" in the responses
  */
-
 Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Result<APIGateway.V2.Response, Error>) -> Void) in
 
     // debug requests coming in
