@@ -27,7 +27,7 @@ struct Output: Codable {
 
 let jsonEncoder = JSONEncoder()
 let jsonDecoder = JSONDecoder()
-let ipChecker = IpWhitelistChecker()
+let ipChecker = IpWhitelistChecker([])
 
 /*
  TODO:

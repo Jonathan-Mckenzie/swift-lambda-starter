@@ -1,14 +1,16 @@
-import Foundation
+
 
 public class IpWhitelistChecker {
     
-    public init() {
-        
+    var ipSet: Set<String>
+    
+    public init(_ ips: [String]) {
+        ipSet = Set(ips)
     }
     
     // TODO: tie to check a list of IPs
     public func isValid(_ ipAddress: String) -> Bool {
-        return true;
+        return ipSet.contains(ipAddress)
     }
     
 }
