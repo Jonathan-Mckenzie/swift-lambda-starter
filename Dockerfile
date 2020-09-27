@@ -1,6 +1,6 @@
- FROM fabianfett/amazonlinux-swift:5.3-master
-  
- RUN yum -y install \
+FROM swift:5.3-amazonlinux2
+
+RUN yum -y install \
      libuuid-devel \
      libicu-devel \
      libedit-devel \
