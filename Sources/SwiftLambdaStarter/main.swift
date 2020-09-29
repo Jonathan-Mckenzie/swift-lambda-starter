@@ -27,11 +27,6 @@ let jsonEncoder = JSONEncoder()
 let jsonDecoder = JSONDecoder()
 let ipChecker = IpWhitelistChecker(IpAddresses.list)
 
-/*
- TODO:
- - (done) only allow certain IPs to access this lambda function
- - set an environment variable to replace "friend" in the responses
- */
 Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Result<APIGateway.V2.Response, Error>) -> Void) in
 
     // debug requests coming in
@@ -52,13 +47,13 @@ Lambda.run { (context, request: APIGateway.V2.Request, callback: @escaping (Resu
         response = APIGateway.V2.Response(
             statusCode: HTTPResponseStatus.ok,
             headers: ["content-type": "application/json"],
-            body: try! jsonEncoder.encodeAsString(Output(message: "hello friend."))
+            body: try! jsonEncoder.encodeAsString(Output(message: "hello \(EnvironmentService.shared.greetingNoun)."))
         )
         break
     case ("/test", .POST):
         do {
             let input = try jsonDecoder.decode(Input.self, from: request.body ?? "")
-            let body = try jsonEncoder.encodeAsString(Output(message: input.name + ", hello friend."))
+            let body = try jsonEncoder.encodeAsString(Output(message: input.name + ", hello \(EnvironmentService.shared.greetingNoun)."))
             response = APIGateway.V2.Response(statusCode: HTTPResponseStatus.ok, multiValueHeaders: ["content-type": ["application/json"]], body: body )
         } catch {
             response = APIGateway.V2.Response(statusCode: HTTPResponseStatus.badRequest, body: "missing name")
