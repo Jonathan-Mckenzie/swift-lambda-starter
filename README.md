@@ -1,7 +1,20 @@
 # Swift Lambda Starter
 
-Starter project to explore the capabilities of creating http rest endpoints with lambdas written in Swift.
-
+Starter project to both learn the Swift language and explore the capabilities of creating http rest endpoints using Lambdas. 
+  
+✅ Swift Lambda Runtime  
+✅ AWS API Gateway  
+✅ Testing framework  
+✅ Unit Testing    
+✅ Compile both an Executable and a Library      
+✅ Build Toolchain  
+✅ Environment Variables  
+✅ Ip Address Whitelist  
+✅ Guards against http paths  
+✅ Switching logic on request type  
+✅ Link to class from another module          
+❌ Bundle resources (txt, json files) 
+    
 ## Get up and Running
 
 ### Xcode
