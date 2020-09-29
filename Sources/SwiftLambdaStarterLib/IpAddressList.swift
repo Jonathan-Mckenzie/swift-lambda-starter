@@ -1,5 +1,3 @@
-import Foundation
-
 public struct IpAddresses {
 	public static let list: [String] = [
 		"192.168.0.1",

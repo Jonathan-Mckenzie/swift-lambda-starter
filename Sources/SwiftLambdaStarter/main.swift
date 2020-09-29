@@ -1,7 +1,7 @@
 import Foundation
 import AWSLambdaRuntime
 import AWSLambdaEvents
-import IpWhitelistCheckerLib
+import SwiftLambdaStarterLib
 
 extension JSONEncoder {
     func encodeAsString<T: Encodable>(_ value: T) throws -> String {

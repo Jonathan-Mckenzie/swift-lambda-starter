@@ -1,5 +1,5 @@
 import XCTest
-@testable import IpWhitelistCheckerLib
+@testable import SwiftLambdaStarterLib
 
 final class IpWhitelistCheckerTests: XCTestCase {
     
